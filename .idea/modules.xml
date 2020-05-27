@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://C:/Users/erkang/git-repo/mime/FlowLayout/FlowLayout.iml" filepath="C:/Users/erkang/git-repo/mime/FlowLayout/FlowLayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flowlayout/flowlayout.iml" filepath="$PROJECT_DIR$/flowlayout/flowlayout.iml" group="FlowLayout/flowlayout" />
+      <module fileurl="file://$PROJECT_DIR$/flowlayout-lib/flowlayout-lib.iml" filepath="$PROJECT_DIR$/flowlayout-lib/flowlayout-lib.iml" group="FlowLayout/flowlayout-lib" />
+      <module fileurl="file://$PROJECT_DIR$/workspace-FlowLayout.iml" filepath="$PROJECT_DIR$/workspace-FlowLayout.iml" group="FlowLayout" />
+    </modules>
+  </component>
+</project>
