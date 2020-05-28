@@ -24,7 +24,7 @@ public class FlowLayout extends ViewGroup {
     protected List<Integer> mLineWidth = new ArrayList<Integer>();
     private int mGravity;
     private List<View> lineViews = new ArrayList<>();
-
+    private int mMaxLines = -1;
     public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TagFlowLayout);
@@ -61,10 +61,14 @@ public class FlowLayout extends ViewGroup {
 
         int lineWidth = 0;
         int lineHeight = 0;
-
+        int lines = 1;
         int cCount = getChildCount();
-
+        int limitChildIndex = cCount;
         for (int i = 0; i < cCount; i++) {
+            if (mMaxLines != -1 && lines > mMaxLines) {
+                break;
+            }
+            limitChildIndex = i;
             View child = getChildAt(i);
             if (child.getVisibility() == View.GONE) {
                 if (i == cCount - 1) {
@@ -87,6 +91,7 @@ public class FlowLayout extends ViewGroup {
                 lineWidth = childWidth;
                 height += lineHeight;
                 lineHeight = childHeight;
+                ++lines;
             } else {
                 lineWidth += childWidth;
                 lineHeight = Math.max(lineHeight, childHeight);
@@ -96,6 +101,9 @@ public class FlowLayout extends ViewGroup {
                 height += lineHeight;
             }
         }
+        if (mMaxLines != -1 && lines > mMaxLines) {
+            removeViews(limitChildIndex, cCount - limitChildIndex);
+        }
         setMeasuredDimension(
                 //
                 modeWidth == MeasureSpec.EXACTLY ? sizeWidth : width + getPaddingLeft() + getPaddingRight(),
@@ -104,7 +112,7 @@ public class FlowLayout extends ViewGroup {
 
     }
 
-    private boolean singleLine = false;
+    private boolean singleLine = true;
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
